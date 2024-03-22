@@ -63,7 +63,7 @@ const MacBookPro1440 = () => {
             boxSizing: "border-box",
             textAlign: "center",
             fontSize: "24px",
-            color: "#baff2a",
+            color: "#4B6CC2",
             fontFamily: "'Odibee Sans'",
           }}
         >
@@ -266,7 +266,7 @@ const MacBookPro1440 = () => {
         </div>
         <div
           style={{
-            backgroundColor: "#baff2a",
+            backgroundColor: "#4B6CC2",
             width: "235px",
             height: "46px",
             overflow: "hidden",
@@ -556,7 +556,7 @@ const MacBookPro1440 = () => {
                 boxSizing: "border-box",
                 position: "relative",
                 textAlign: "center",
-                color: "#baff2a",
+                color: "#4B6CC2",
               }}
             >
               <div
@@ -588,7 +588,7 @@ const MacBookPro1440 = () => {
             alignItems: "center",
             justifyContent: "center",
             fontSize: "20px",
-            color: "#baff2a",
+            color: "#4B6CC2",
           }}
         >
           <div
@@ -757,7 +757,7 @@ const MacBookPro1440 = () => {
               justifyContent: "flex-start",
               gap: "16px",
               fontSize: "20px",
-              color: "#baff2a",
+              color: "#4B6CC2",
             }}
           >
             <img
@@ -893,7 +893,7 @@ const MacBookPro1440 = () => {
             boxSizing: "border-box",
             gap: "17px",
             fontSize: "24px",
-            color: "#baff2a",
+            color: "#4B6CC2",
           }}
         >
           <div
@@ -926,7 +926,7 @@ const MacBookPro1440 = () => {
             <div
               style={{
                 borderRadius: "10px",
-                border: "1px solid #baff2a",
+                border: "1px solid #4B6CC2",
                 boxSizing: "border-box",
                 width: "247px",
                 height: "68px",
@@ -965,7 +965,7 @@ const MacBookPro1440 = () => {
             <div
               style={{
                 borderRadius: "10px",
-                border: "1px solid #baff2a",
+                border: "1px solid #4B6CC2",
                 boxSizing: "border-box",
                 width: "218px",
                 height: "68px",
@@ -1004,7 +1004,7 @@ const MacBookPro1440 = () => {
             <div
               style={{
                 borderRadius: "10px",
-                border: "1px solid #baff2a",
+                border: "1px solid #4B6CC2",
                 boxSizing: "border-box",
                 width: "186px",
                 height: "68px",
@@ -1046,7 +1046,7 @@ const MacBookPro1440 = () => {
             <div
               style={{
                 borderRadius: "10px",
-                border: "1px solid #baff2a",
+                border: "1px solid #4B6CC2",
                 boxSizing: "border-box",
                 width: "213px",
                 height: "68px",
@@ -1326,7 +1326,7 @@ const MacBookPro1440 = () => {
               justifyContent: "flex-start",
               gap: "16px",
               fontSize: "20px",
-              color: "#baff2a",
+              color: "#4B6CC2",
             }}
           >
             <img
@@ -1477,7 +1477,7 @@ const MacBookPro1440 = () => {
               justifyContent: "flex-start",
               gap: "16px",
               fontSize: "20px",
-              color: "#baff2a",
+              color: "#4B6CC2",
             }}
           >
             <img
@@ -1628,7 +1628,7 @@ const MacBookPro1440 = () => {
               justifyContent: "flex-start",
               gap: "16px",
               fontSize: "20px",
-              color: "#baff2a",
+              color: "#4B6CC2",
             }}
           >
             <img
@@ -1779,7 +1779,7 @@ const MacBookPro1440 = () => {
               justifyContent: "flex-start",
               gap: "16px",
               fontSize: "20px",
-              color: "#baff2a",
+              color: "#4B6CC2",
             }}
           >
             <img

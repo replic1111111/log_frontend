@@ -14,8 +14,8 @@
 </g>
 <defs>
 <radialGradient id="paint0_radial_1331_1415" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(940 3750) rotate(90) scale(681 678)">
-<stop stop-color="#BAFF2A"/>
-<stop offset="1" stop-color="#BAFF2A" stop-opacity="0"/>
+<stop stop-color="#4B6CC2"/>
+<stop offset="1" stop-color="#4B6CC2" stop-opacity="0"/>
 </radialGradient>
 <radialGradient id="paint1_radial_1331_1415" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1241.5 3910.5) rotate(90) scale(736.5 746.5)">
 <stop stop-color="white"/>
@@ -26,28 +26,28 @@
 <stop offset="1" stop-color="white" stop-opacity="0"/>
 </radialGradient>
 <radialGradient id="paint3_radial_1331_1415" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(756 5189) rotate(90) scale(758 756)">
-<stop stop-color="#BAFF2A"/>
-<stop offset="1" stop-color="#BAFF2A" stop-opacity="0"/>
+<stop stop-color="#4B6CC2"/>
+<stop offset="1" stop-color="#4B6CC2" stop-opacity="0"/>
 </radialGradient>
 <radialGradient id="paint4_radial_1331_1415" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1489 386) rotate(90) scale(654 666)">
-<stop stop-color="#BAFF2A"/>
-<stop offset="1" stop-color="#BAFF2A" stop-opacity="0"/>
+<stop stop-color="#4B6CC2"/>
+<stop offset="1" stop-color="#4B6CC2" stop-opacity="0"/>
 </radialGradient>
 <radialGradient id="paint5_radial_1331_1415" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 -0.5) rotate(90) scale(695.5 666)">
-<stop stop-color="#BAFF2A"/>
-<stop offset="1" stop-color="#BAFF2A" stop-opacity="0"/>
+<stop stop-color="#4B6CC2"/>
+<stop offset="1" stop-color="#4B6CC2" stop-opacity="0"/>
 </radialGradient>
 <radialGradient id="paint6_radial_1331_1415" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1511.5 2464) rotate(90) scale(847 839.5)">
 <stop stop-color="white"/>
-<stop offset="1" stop-color="#BAFF2A" stop-opacity="0"/>
+<stop offset="1" stop-color="#4B6CC2" stop-opacity="0"/>
 </radialGradient>
 <radialGradient id="paint7_radial_1331_1415" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 1694) rotate(90) scale(654 666)">
-<stop stop-color="#BAFF2A"/>
-<stop offset="1" stop-color="#BAFF2A" stop-opacity="0"/>
+<stop stop-color="#4B6CC2"/>
+<stop offset="1" stop-color="#4B6CC2" stop-opacity="0"/>
 </radialGradient>
 <radialGradient id="paint8_radial_1331_1415" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(178 4293) rotate(90) scale(681 678)">
-<stop stop-color="#BAFF2A"/>
-<stop offset="1" stop-color="#BAFF2A" stop-opacity="0"/>
+<stop stop-color="#4B6CC2"/>
+<stop offset="1" stop-color="#4B6CC2" stop-opacity="0"/>
 </radialGradient>
 <clipPath id="clip0_1331_1415">
 <rect width="1512" height="5318" fill="white"/>

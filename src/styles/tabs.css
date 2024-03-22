@@ -1,0 +1,20 @@
+.tabs-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.tabs-switches {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  padding-bottom: 12px;
+  gap: 6px;
+  border-bottom: 4px solid #181818;
+}
+.tabs-switches > button {
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  padding: 4px 14px;
+  border-radius: 24px;
+}

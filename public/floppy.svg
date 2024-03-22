@@ -1,5 +1,5 @@
 <svg width="51" height="50" viewBox="0 0 51 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M4.6665 6.16663C4.6665 5.06206 5.56193 4.16663 6.6665 4.16663H33.0047C33.5352 4.16663 34.0439 4.37734 34.419 4.75241L45.7474 16.0808C46.1225 16.4559 46.3332 16.9646 46.3332 17.4951V43.8333C46.3332 44.9379 45.4377 45.8333 44.3332 45.8333H6.66651C5.56194 45.8333 4.6665 44.9379 4.6665 43.8333V6.16663Z" stroke="#BAFF2A" stroke-width="1.5" stroke-linejoin="round"/>
-<path d="M13 29.1666H38V45.8333H13V29.1666Z" stroke="#BAFF2A" stroke-width="1.5" stroke-linejoin="round"/>
-<path d="M13 4.16663H29.6667V14.5833H13V4.16663Z" stroke="#BAFF2A" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M4.6665 6.16663C4.6665 5.06206 5.56193 4.16663 6.6665 4.16663H33.0047C33.5352 4.16663 34.0439 4.37734 34.419 4.75241L45.7474 16.0808C46.1225 16.4559 46.3332 16.9646 46.3332 17.4951V43.8333C46.3332 44.9379 45.4377 45.8333 44.3332 45.8333H6.66651C5.56194 45.8333 4.6665 44.9379 4.6665 43.8333V6.16663Z" stroke="#baff2a" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M13 29.1666H38V45.8333H13V29.1666Z" stroke="#baff2a" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M13 4.16663H29.6667V14.5833H13V4.16663Z" stroke="#baff2a" stroke-width="1.5" stroke-linejoin="round"/>
 </svg>

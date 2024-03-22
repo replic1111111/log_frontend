@@ -12,6 +12,22 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(128, 128, 128, 0.193);
+  border-radius: 4px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(199, 199, 199);
+  border-radius: 4px;
+}
+/* Scroll Bar */
 .example::-webkit-scrollbar {
   display: none;
 }
@@ -41,62 +57,43 @@
 
 /* SideNav Styles Start */
 
-.active-link {
-  background-color: #baff2a;
-  width: 235px;
-  height: 46px;
-  overflow: hidden;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 2px 0px;
-  box-sizing: border-box;
-  /* gap :18px; */
-  color: #181818;
-  text-decoration: none;
-}
-
-.active-link p {
-  flex: 0.95;
-  text-align: start;
-}
-
-.active-link img {
-  flex: 0.45;
-  width: 24px;
-  height: 24px;
-  text-align: end;
-  filter: invert(1);
-}
-
-.link {
-  /* background-color: #181818; */
-  width: 235px;
-  height: 46px;
-  overflow: hidden;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  padding: 2px 0px;
-  box-sizing: border-box;
-  /* gap: 18px; */
-  color: #fff;
-  text-decoration: none;
-}
-
-.link p {
-  flex: 0.95;
-  text-align: start;
-}
-
-.link img {
-  flex: 0.45;
-  width: 24px;
-  height: 24px;
-  text-align: end;
-}
 /* SideNav Styles Ends */
+
+/*Share Modal Ant design Modal Styles Starts*/
+.share-modal .ant-modal .ant-modal-content {
+  background-color: #262626;
+  padding: 50px;
+}
+.ant-modal .ant-modal-header {
+  background: #262626;
+}
+.ant-modal .ant-modal-title {
+  color: #fff;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.ant-modal .ant-modal-footer {
+  display: none;
+}
+.share-modal .ant-modal .ant-modal-close {
+  top: 48px;
+  right: 50px;
+}
+.share-modal .anticon {
+  padding: 4px;
+  border-radius: 10px;
+  border: 2px solid white;
+}
+.anticon svg {
+  display: inline-block;
+  font-size: 20px;
+  color: white;
+}
+
+/* Add Channel Modal Style Starts */
+.ant-modal .ant-modal-content {
+  background-color: #262626 !important;
+}

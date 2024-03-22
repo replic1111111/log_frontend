@@ -1,0 +1,233 @@
+p {
+  margin-bottom: 0px !important;
+}
+a {
+  text-decoration: none !important;
+}
+.feed-section {
+  position: relative;
+  height: 90vh;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2px;
+  font-size: 20px;
+}
+.feed-container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+.feed-part1 {
+  height: 100%;
+  display: flex;
+  padding: 0px 10px 0px 22px;
+  flex-direction: column;
+  width: 70%;
+  overflow-y: auto;
+}
+.feed-part2 {
+  width: 30%;
+  overflow-y: auto;
+  padding: 50px 22px 0px 10px;
+  height: 100%;
+}
+.recent-predictions {
+}
+.rp-heading {
+  display: flex;
+  padding: 10px;
+}
+.rp-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* Feed Cards CSS Start */
+.feed-card {
+  padding: 22px;
+  border-radius: 10px;
+  background: #262626;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-header > .card-header-btn {
+  background-color: #4b6cc2;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  padding: 12px 36px;
+  color: #fff;
+}
+.card-header-img {
+  border-radius: 50%;
+  border: 1px solid #4b6cc2;
+  padding: 2px;
+  height: fit-content;
+  width: fit-content;
+}
+.profile-name {
+  padding-left: 10px;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+}
+.profile-name span {
+  font-size: 14px;
+  color: #aeaeae;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.card-status {
+  font-size: 14px;
+  display: flex;
+  padding-top: 12px;
+  align-items: center;
+  font-weight: 400;
+  line-height: normal;
+}
+.card-status p {
+  margin-left: 6px;
+  color: #aeaeae;
+  font-size: 14px;
+}
+.card-status span {
+  color: #c2964b;
+}
+.card-dates {
+  display: flex;
+  padding-top: 12px;
+  gap: 15px;
+  color: #fff;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.card-dates span {
+  color: #aeaeae;
+}
+.card-description {
+  color: #aeaeae;
+  padding-top: 12px;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.card-image {
+  padding-top: 12px;
+  width: 100%;
+  margin: 0 auto;
+}
+.card-image > img {
+  width: 100%;
+}
+.card-footer {
+  margin-top: 24px;
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+}
+.dislikes,
+.likes {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.dislikes span,
+.likes span {
+  font-size: 14px;
+}
+/* Feed Card CSS End */
+/* Top Predictors CSS Start */
+.top-predictors {
+}
+.top-predictors-header,
+.trending-predictions-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.tp-cards {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  overflow-x: auto;
+}
+.tp-cards::-webkit-scrollbar {
+  display: none;
+}
+/* Top Predictors CSS Ends */
+@media (max-width: 1023px) {
+  .feed-section {
+    height: 100%;
+    width: 100%;
+  }
+  .feed-container {
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+  .feed-part1 {
+    height: 100%;
+    width: 100%;
+    padding: 16px;
+  }
+  .feed-part2 {
+    display: none;
+  }
+  .rp-heading {
+    padding: 0px 0px 10px 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .feed-part1 {
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+  }
+  .rp-heading {
+    padding: 10px 16px;
+  }
+  .feed-card {
+    padding: 16px;
+    border-radius: 0px;
+    background: #262626;
+  }
+  .profile-name h5 {
+    color: #fff;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+  .card-header > .card-header-btn {
+    font-size: 14px;
+    padding: 8px 24px;
+  }
+  .card-footer {
+    width: 100%;
+  }
+  .top-predictors-header,
+  .rp-heading,
+  .trending-predictions-header {
+    padding: 10px 16px;
+    font-size: 16px;
+  }
+  .tp-cards {
+    padding: 0px 16px;
+  }
+}

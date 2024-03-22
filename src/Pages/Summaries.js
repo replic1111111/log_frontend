@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import "../styles/summaries.css";
+import "../styles/summaries.css";
 // import "../styles/summariesSubSection.css";
 import {
   allSummarySources,
@@ -8,10 +8,12 @@ import {
   getSummarySummaries,
   getFullTranscript,
 } from "../services/summaries.services";
+import { LuCalendarDays } from "react-icons/lu";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import Tabs from "../components/common/tabs";
 
 const myComponentStyle = {
   fontFamily: "Roboto, sans-serif", // Use the font name specified in Google Fonts
@@ -27,13 +29,12 @@ function Summaries() {
   const [fullTranscriptData, setFullTranscriptData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeIndex, setActiveIndex] = useState("");
-  const [subSection, setSubSection] = useState(false);
   const [subSectionIndex, setSubSectionIndex] = useState(false);
 
   useEffect(() => {
     allSummarySources()
       .then((res) => {
-        console.log("res::::", res.data);
+        // console.log("res::::", res.data);
         setData([...res.data]);
         setData(
           [...res.data].map((obj) => ({
@@ -54,19 +55,19 @@ function Summaries() {
     let m = minutes % 60;
     h = h < 10 ? "0" + h : h;
     m = m < 10 ? "0" + m : m;
-    return `${h}:${m}:00`;  // Assumes no seconds part, so it's always '00'
+    return `${h}:${m}:00`; // Assumes no seconds part, so it's always '00'
   };
-  
+
   const onClickPrediction = (index) => {
     const arr = [...data];
     arr[index].predictionActive = !arr[index].predictionActive;
     setData([...arr]);
-    if (data[index].predictionActive == false) {
+    if (data[index].predictionActive === false) {
       return;
     }
     setData(
       [...data].map((obj, ind) => {
-        if (ind == index) {
+        if (ind === index) {
           return {
             ...obj,
             predictionActive: true,
@@ -102,12 +103,12 @@ function Summaries() {
     const arr = [...data];
     arr[index].peopleActive = !arr[index].peopleActive;
     setData([...arr]);
-    if (data[index].peopleActive == false) {
+    if (data[index].peopleActive === false) {
       return;
     }
     setData(
       [...data].map((obj, ind) => {
-        if (ind == index) {
+        if (ind === index) {
           return {
             ...obj,
             predictionActive: false,
@@ -144,7 +145,7 @@ function Summaries() {
     const arr = [...data];
     arr[index].summariesActive = !arr[index].summariesActive;
     setData([...arr]);
-    if (data[index].summariesActive == false) {
+    if (data[index].summariesActive === false) {
       return;
     }
     setData(
@@ -185,12 +186,12 @@ function Summaries() {
     const arr = [...data];
     arr[index].fullTranscriptActive = !arr[index].fullTranscriptActive;
     setData([...arr]);
-    if (data[index].fullTranscriptActive == false) {
+    if (data[index].fullTranscriptActive === false) {
       return;
     }
     setData(
       [...data].map((obj, ind) => {
-        if (ind == index) {
+        if (ind === index) {
           return {
             ...obj,
             predictionActive: false,
@@ -223,661 +224,212 @@ function Summaries() {
         console.log("err:::::", err);
       });
   };
+  const onClickSummariesCol = (index) => {
+    const arr = [...data];
+    arr[index].Active = !arr[index].Active;
+    setData([...arr]);
+    onClickPrediction(index);
+    onClickPeople(index);
+    onClickSummaries(index);
+    onClickFullTranscript(index);
+  };
+
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: "76px",
-        left: "237px",
-        height: "90vh",
-        minWidth: "calc(100% - 240px)",
-        overflowY: "scroll",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        justifyContent: "flex-start",
-        gap: "2px",
-        fontSize: "14px",
-      }}
-    >
+    <div className="summaries">
       {/* Column Starts */}
       {data.map((val, index) => {
         return (
           <>
-            <div
-              style={{
-                backgroundColor: "#282828",
-                width: "100%",
-                height: "54px",
-                overflow: "hidden",
-                flexShrink: "0",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "flex-start",
-                padding: "7px 22px",
-                boxSizing: "border-box",
-                gap: "26px",
-              }}
-            >
-              <div
-                style={{
-                  width: "315px",
-                  height: "40px",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  color: "#baff2a",
-                }}
-              >
-                <img
-                  style={{
-                    position: "relative",
-                    left: 0,
-                    width: "27px",
-                    height: "18px",
-                    paddingRight: "12px",
-                  }}
-                  alt=""
-                  src="/youtube.svg"
-                />
-                <div
-                  style={{
-                    width: "259px",
-                    height: "40px",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    justifyContent: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "relative",
-                      display: "flex",
-                      alignItems: "center",
-                      width: "259px",
-                      height: "20px",
-                      flexShrink: "0",
-                    }}
-                  >
+            {/* Column Starts */}
+            <div className="summaries-col">
+              <div className="summaries-col-1">
+                <img alt="" src="/youtube.svg" />
+                <div className="sub-col-1">
+                  <div className="sub-col-text-1">
                     {val.source_title.slice(0, 30)}..
                   </div>
-                  <div
-                    style={{
-                      position: "relative",
-                      color: "#aeaeae",
-                      display: "flex",
-                      alignItems: "center",
-                      width: "259px",
-                      height: "20px",
-                      flexShrink: "0",
-                    }}
-                  >
+                  <div className="sub-col-text-2">
                     Views: {Math.round(val?.views / 1000000)}M | Length:{" "}
                     {convertMinsToHrsMins(val.duration)}
                   </div>
                 </div>
               </div>
-              <div
-                style={{
-                  position: "relative",
-                  width: "131px",
-                  height: "40px",
-                  color: "#aeaeae",
-                }}
-              >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "0px",
-                    left: "0px",
-                    width: "131px",
-                    height: "40px",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    justifyContent: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "relative",
-                      display: "flex",
-                      alignItems: "center",
-                      width: "131px",
-                      height: "20px",
-                      flexShrink: "0",
-                    }}
-                  >
-                    # of Predictions
-                  </div>
-                  <div
-                    style={{
-                      position: "relative",
-                      color: "#baff2a",
-                      display: "flex",
-                      alignItems: "center",
-                      width: "131px",
-                      height: "20px",
-                      flexShrink: "0",
-                    }}
-                  >
+              <div className="summaries-col-2">
+                <div className="sub-col-2">
+                  <div className="sub-col-text-1"># of Predictions</div>
+                  <div className="sub-col-text-2">
                     {val.number_of_predictions}
                   </div>
                 </div>
               </div>
-              <div
-                style={{
-                  width: "153px",
-                  height: "40px",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  justifyContent: "center",
-                  color: "#aeaeae",
-                }}
-              >
-                <div
-                  style={{
-                    position: "relative",
-                    display: "flex",
-                    alignItems: "center",
-                    width: "120px",
-                    height: "20px",
-                    flexShrink: "0",
-                  }}
-                >
-                  Publish Date
-                </div>
-                <div
-                  style={{
-                    position: "relative",
-                    color: "#baff2a",
-                    display: "flex",
-                    alignItems: "center",
-                    width: "120px",
-                    height: "20px",
-                    flexShrink: "0",
-                  }}
-                >
+              <div className="summaries-col-3">
+                <div className="sub-col-text-1">Publish Date</div>
+                <div className="sub-col-text-2">
                   {val.publication_date.toString().slice(0, 10)}
                 </div>
               </div>
               <div
-                style={{
-                  width: "124px",
-                  height: "40px",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  gap: "9px",
-                  cursor: "pointer",
-                }}
+                className="summaries-col-4"
                 onClick={() => onClickSummaries(index)}
               >
-                <div
-                  style={{
-                    position: "relative",
-                    display: "flex",
-                    alignItems: "center",
-                    width: "86px",
-                    height: "20px",
-                    flexShrink: "0",
-                  }}
-                >
-                  Summaries
-                </div>
+                <div className="sub-col-text-1">Summaries</div>
                 {val?.summariesActive ? (
-                  <img
-                    style={{
-                      position: "relative",
-                      width: "21.5px",
-                      height: "21.5px",
-                    }}
-                    alt=""
-                    src="/vector-1433.svg"
-                  />
+                  <img alt="" src="/vector-1433.svg" />
                 ) : (
-                  <img
-                    style={{
-                      position: "relative",
-                      width: "21.5px",
-                      height: "21.5px",
-                    }}
-                    alt=""
-                    src="/vector-278.svg"
-                  />
+                  <img alt="" src="/vector-278.svg" />
                 )}
               </div>
               <div
-                style={{
-                  width: "109px",
-                  height: "40px",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  gap: "9px",
-                  cursor: "pointer",
-                }}
+                className="summaries-col-5"
                 onClick={() => onClickPrediction(index)}
               >
-                <div
-                  style={{
-                    position: "relative",
-                    display: "flex",
-                    alignItems: "center",
-                    width: "79px",
-                    height: "20px",
-                    flexShrink: "0",
-                  }}
-                >
-                  Predictions
-                </div>
+                <div className="sub-col-text-1">Predictions</div>
                 {val?.predictionActive ? (
-                  <img
-                    style={{
-                      position: "relative",
-                      width: "21.5px",
-                      height: "21.5px",
-                    }}
-                    alt=""
-                    src="/vector-1433.svg"
-                  />
+                  <img alt="" src="/vector-1433.svg" />
                 ) : (
-                  <img
-                    style={{
-                      position: "relative",
-                      width: "21.5px",
-                      height: "21.5px",
-                    }}
-                    alt=""
-                    src="/vector-278.svg"
-                  />
+                  <img alt="" src="/vector-278.svg" />
                 )}
               </div>
               <div
-                style={{
-                  width: "109px",
-                  height: "40px",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  gap: "9px",
-                  cursor: "pointer",
-                }}
+                className="summaries-col-6"
                 onClick={() => {
                   onClickPeople(index);
                 }}
               >
-                <div
-                  style={{
-                    position: "relative",
-                    display: "flex",
-                    alignItems: "center",
-                    width: "79px",
-                    height: "20px",
-                    flexShrink: "0",
-                  }}
-                >
-                  People
-                </div>
+                <div className="sub-col-text-1">People</div>
                 {val?.peopleActive ? (
-                  <img
-                    style={{
-                      position: "relative",
-                      width: "21.5px",
-                      height: "21.5px",
-                    }}
-                    alt=""
-                    src="/vector-1433.svg"
-                  />
+                  <img alt="" src="/vector-1433.svg" />
                 ) : (
-                  <img
-                    style={{
-                      position: "relative",
-                      width: "21.5px",
-                      height: "21.5px",
-                    }}
-                    alt=""
-                    src="/vector-278.svg"
-                  />
+                  <img alt="" src="/vector-278.svg" />
                 )}
               </div>
               <div
-                style={{
-                  width: "123px",
-                  height: "40px",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  gap: "9px",
-                  cursor: "pointer",
-                }}
+                className="summaries-col-7"
                 onClick={() => {
                   onClickFullTranscript(index);
                 }}
               >
-                <div
-                  style={{
-                    position: "relative",
-                    display: "flex",
-                    alignItems: "center",
-                    width: "94px",
-                    height: "20px",
-                    flexShrink: "0",
-                  }}
-                >
-                  Full Transcript
-                </div>
+                <div className="sub-col-text-1">Full Transcript</div>
                 {val?.fullTranscriptActive ? (
-                  <img
-                    style={{
-                      position: "relative",
-                      width: "21.5px",
-                      height: "21.5px",
-                    }}
-                    alt=""
-                    src="/vector-1433.svg"
-                  />
+                  <img alt="" src="/vector-1433.svg" />
                 ) : (
-                  <img
-                    style={{
-                      position: "relative",
-                      width: "21.5px",
-                      height: "21.5px",
-                    }}
-                    alt=""
-                    src="/vector-278.svg"
-                  />
+                  <img alt="" src="/vector-278.svg" />
                 )}
               </div>
             </div>
+
+            {/* Mobile View Starts */}
+            <div
+              className="mob-summaries-col"
+              onClick={() => {
+                onClickSummariesCol(index);
+              }}
+            >
+              <div className="summaries-header">
+                <div className="summaries-header-img">
+                  <img alt="" src="/youtube.svg" />
+                </div>
+                <div className="summaries-header-content">
+                  <h6 className=""> {val.source_title.slice(0, 30)}..</h6>
+                  <span style={{ color: "#aeaeae" }}>
+                    Views: {Math.round(val?.views / 1000000)}M | Length:{" "}
+                    {convertMinsToHrsMins(val.duration)}
+                  </span>
+                </div>
+              </div>
+              <div className="summaries-body">
+                <div className="col">
+                  <span>No. of Predictions</span>
+                  <h6>{val.number_of_predictions}</h6>
+                </div>
+                <div className="col">
+                  <span>Publish Date</span>
+                  <h6>{val.publication_date.toString().slice(0, 10)}</h6>
+                </div>
+              </div>
+            </div>
+
             {/* Column Ends */}
             {/* Column Description Starts */}
             {!loading && val?.peopleActive ? (
               <>
                 {peopleData.map((val, index) => {
                   return (
-                    <div
-                      style={{
-                        backgroundColor: "#181818",
-                        width: "1275px",
-                        height: "112px",
-                        display: "flex",
-                        flexDirection: "row",
-                        alignItems: "center",
-                        justifyContent: "flex-start",
-                        padding: "10px 22px",
-                        boxSizing: "border-box",
-                        gap: "16px",
-                        fontSize: "24px",
-                        color: "#baff2a",
-                      }}
-                    >
-                      <div
-                        style={{
-                          position: "relative",
-                          borderRadius: "8px",
-                          width: "87px",
-                          height: "86px",
-                          overflow: "hidden",
-                          flexShrink: "0",
-                        }}
-                      >
-                        <img
-                          style={{
-                            position: "absolute",
-                            top: "0px",
-                            left: "0px",
-                            width: "87px",
-                            height: "86px",
-                            objectFit: "cover",
-                          }}
-                          alt=""
-                          src={val?.image_url}
-                        />
-                      </div>
-                      <div
-                        style={{
-                          width: "978px",
-                          height: "82px",
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "flex-start",
-                          justifyContent: "center",
-                          gap: "14px",
-                        }}
-                      >
-                        <b
-                          style={{
-                            position: "relative",
-                            lineHeight: "80px",
-                            display: "flex",
-                            alignItems: "center",
-                            width: "1015px",
-                            height: "20px",
-                            flexShrink: "0",
-                            fontSize: "19px",
-                          }}
-                        >
-                          {val?.first_name.startsWith("Unknown")
-                            ? "Unknown"
-                            : val?.first_name + " " + val?.last_name}
-                        </b>
-                        <div
-                          style={{
-                            width: "978px",
-                            height: "48px",
-                            display: "flex",
-                            flexDirection: "row",
-                            alignItems: "center",
-                            justifyContent: "flex-start",
-                            gap: "60px",
-                            fontSize: "17px",
-                            color: "#fff",
-                          }}
-                        >
+                    <div className="people-section">
+                      <div className="ps-col-1">
+                        <img alt="" src={val?.image_url} />
+                        <div>
                           <div
                             style={{
-                              width: "116px",
-                              height: "40px",
+                              fontWeight: "800",
                               display: "flex",
-                              flexDirection: "column",
-                              alignItems: "flex-start",
-                              justifyContent: "flex-start",
+                              alignItems: "center",
+                              flexShrink: "0",
+                              fontSize: "19px",
                             }}
                           >
-                            <div
-                              style={{
-                                position: "relative",
-                                fontWeight: "400",
-                                display: "flex",
-                                alignItems: "center",
-                                width: "116px",
-                                height: "20px",
-                                flexShrink: "0",
-                              }}
-                            >
-                              #85
-                            </div>
-                            <div
-                              style={{
-                                position: "relative",
-                                fontSize: "16px",
-                                color: "#aeaeae",
-                                display: "flex",
-                                alignItems: "center",
-                                width: "116px",
-                                height: "20px",
-                                flexShrink: "0",
-                              }}
-                            >
-                              Ranked
-                            </div>
+                            {val?.first_name.startsWith("Unknown")
+                              ? "Unknown"
+                              : val?.first_name + " " + val?.last_name}
                           </div>
                           <div
                             style={{
-                              width: "116px",
-                              height: "40px",
+                              position: "relative",
+                              fontWeight: "400",
                               display: "flex",
-                              flexDirection: "column",
-                              alignItems: "flex-start",
-                              justifyContent: "flex-start",
+                              alignItems: "center",
+                              flexShrink: "0",
                             }}
                           >
-                            <div
-                              style={{
-                                position: "relative",
-                                fontWeight: "400",
-                                display: "flex",
-                                alignItems: "center",
-                                width: "116px",
-                                height: "20px",
-                                flexShrink: "0",
-                              }}
-                            >
-                              {Math.floor(val?.accuracy_score)}%
-                            </div>
-                            <div
-                              style={{
-                                position: "relative",
-                                fontSize: "16px",
-                                color: "#aeaeae",
-                                display: "flex",
-                                alignItems: "center",
-                                width: "116px",
-                                height: "20px",
-                                flexShrink: "0",
-                              }}
-                            >
-                              Score
-                            </div>
+                            #85
                           </div>
                           <div
                             style={{
+                              position: "relative",
+                              fontSize: "16px",
+                              color: "#aeaeae",
+                              display: "flex",
+                              alignItems: "center",
                               width: "116px",
-                              height: "40px",
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "flex-start",
-                              justifyContent: "flex-start",
+                              height: "20px",
+                              flexShrink: "0",
                             }}
                           >
-                            <div
-                              style={{
-                                position: "relative",
-                                fontWeight: "400",
-                                display: "flex",
-                                alignItems: "center",
-                                width: "160px",
-                                height: "20px",
-                                flexShrink: "0",
-                              }}
-                            >
-                              {val?.total_predictions}
-                            </div>
-                            <div
-                              style={{
-                                position: "relative",
-                                fontSize: "16px",
-                                color: "#aeaeae",
-                                display: "flex",
-                                alignItems: "center",
-                                width: "116px",
-                                height: "20px",
-                                flexShrink: "0",
-                              }}
-                            >
-                              Predictions
-                            </div>
-                          </div>
-                          <div
-                            style={{
-                              width: "116px",
-                              height: "40px",
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "flex-start",
-                              justifyContent: "flex-start",
-                            }}
-                          >
-                            <div
-                              style={{
-                                position: "relative",
-                                fontWeight: "400",
-                                display: "flex",
-                                alignItems: "center",
-                                width: "160px",
-                                height: "20px",
-                                flexShrink: "0",
-                              }}
-                            >
-                              {val?.pending_predictions}
-                            </div>
-                            <div
-                              style={{
-                                position: "relative",
-                                fontSize: "16px",
-                                color: "#aeaeae",
-                                display: "flex",
-                                alignItems: "center",
-                                width: "116px",
-                                height: "20px",
-                                flexShrink: "0",
-                              }}
-                            >
-                              Pending
-                            </div>
-                          </div>
-                          <div
-                            style={{
-                              width: "164px",
-                              height: "40px",
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "flex-start",
-                              justifyContent: "flex-start",
-                            }}
-                          >
-                            <div
-                              style={{
-                                position: "relative",
-                                fontWeight: "400",
-                                display: "flex",
-                                alignItems: "center",
-                                width: "116px",
-                                height: "20px",
-                                flexShrink: "0",
-                              }}
-                            >
-                              {val?.episode_predictions}
-                            </div>
-                            <div
-                              style={{
-                                position: "relative",
-                                fontSize: "16px",
-                                color: "#aeaeae",
-                                display: "flex",
-                                alignItems: "center",
-                                width: "164px",
-                                height: "20px",
-                                flexShrink: "0",
-                              }}
-                            >{`Episode Predictions `}</div>
+                            Ranked
                           </div>
                         </div>
                       </div>
+                      <div className="ps-col-2">
+                        <div className="sub-col-2">
+                          <div className="sub-col-text-1">
+                            {Math.floor(val?.accuracy_score)}%
+                          </div>
+                          <div className="sub-col-text-2">Score</div>
+                        </div>
+                        <div className="sub-col-2">
+                          <div className="sub-col-text-1">
+                            {val?.total_predictions}
+                          </div>
+                          <div className="sub-col-text-2">Predictions</div>
+                        </div>
+                        <div className="sub-col-2">
+                          <div className="sub-col-text-1">
+                            {val?.pending_predictions}
+                          </div>
+                          <div className="sub-col-text-2">Pending</div>
+                        </div>
+                        <div className="sub-col-2">
+                          <div className="sub-col-text-1">
+                            {val?.episode_predictions}
+                          </div>
+                          <div className="sub-col-text-2">{`Episode Predictions `}</div>
+                        </div>
+                      </div>
+
                       <div
                         style={{
                           borderRadius: "8px",
                           backgroundColor: "#282828",
-                          width: "124px",
                           height: "41px",
                           overflow: "hidden",
                           flexShrink: "0",
@@ -897,9 +449,8 @@ function Summaries() {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            width: "125px",
                             flexShrink: "0",
-                            color: "#baff2a",
+                            color: "#4B6CC2",
                             backgroundColor: "#282828",
                           }}
                           onClick={() =>
@@ -918,69 +469,126 @@ function Summaries() {
             ) : null}
 
             {!loading && val?.predictionActive ? (
-              <div
-                style={{
-                  backgroundColor: "#181818",
-                  width: "100%",
-                  height: "332px",
-                  overflow: "hidden",
-                  flexShrink: "0",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "flex-start",
-                  justifyContent: "flex-start",
-                  padding: "18px 22px",
-                  boxSizing: "border-box",
-                  gap: "26px",
-                  fontSize: "16px",
-                }}
-              >
-                <div
-                  style={{
-                    width: "100%",
-                    height: "314px",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    justifyContent: "flex-start",
-                    gap: "4px",
-                    overflowY: "scroll",
-                  }}
-                >
+              <div className="active-predictions-section">
+                <div className="ap-col-1">
                   {predictionData.map((val, index) => {
                     return (
                       <>
                         {" "}
-                        <div
-                          style={{
-                            width: "687px",
-                            height: "40px",
-                            display: "flex",
-                            flexDirection: "row",
-                            alignItems: "center",
-                            justifyContent: "flex-start",
-                            padding: "24px 0px",
-                            boxSizing: "border-box",
-                            cursor: "pointer",
-                          }}
-                        >
+                        <div className="ap-col-1-row">
                           <div
                             style={{
                               position: "relative",
                               fontWeight: "500",
                               display: "flex",
                               alignItems: "center",
-                              width: "664px",
-                              height: "30px",
                               flexShrink: "0",
                             }}
                           >
-                            {val?.prediction.slice(0, 40)}...
+                            {val?.prediction.slice(0, 50)}...
                           </div>
                           <div
                             onClick={() => {
                               // setSubSection((prev) => !prev);
                               console.log(index);
+                              setSubSectionIndex(index);
+                            }}
+                          >
+                            {subSectionIndex === index ? (
+                              <img alt="" src="/vector-1433.svg" />
+                            ) : (
+                              <img alt="" src="/vector-278.svg" />
+                            )}
+                          </div>
+                        </div>
+                        {subSectionIndex === index ? (
+                          <div
+                            style={{
+                              paddingRight: "20px",
+                              marginTop: "10px",
+                              color: "#AEAEAE",
+                              fontFamily: "inter",
+                              fontSize: "14px",
+                            }}
+                          >
+                            {val?.prediction}
+                            <p style={{ color: "#4B6CC2" }}>
+                              Status :
+                              <span
+                                style={{
+                                  color:
+                                    val?.prediction_validation == "TRUE"
+                                      ? "green"
+                                      : val?.prediction_validation == "FALSE"
+                                      ? "#E72E2E"
+                                      : val?.prediction_validation ==
+                                        "PARTIALLY TRUE"
+                                      ? "#2DD22A"
+                                      : val?.prediction_validation == "PENDING"
+                                      ? "#374C98"
+                                      : "#D29D15",
+                                  fontFamily: "inter",
+                                  fontSize: "14px",
+                                }}
+                              >
+                                {" "}
+                                {val?.prediction_validation}
+                              </span>
+                            </p>
+                            <p style={{ color: "#4B6CC2" }}>
+                              Settled Date :{" "}
+                              <span
+                                style={{ fontSize: "14px", color: "#AEAEAE" }}
+                              >
+                                {val?.fixed_date}
+                              </span>
+                            </p>
+                          </div>
+                        ) : null}
+                      </>
+                    );
+                  })}
+                </div>
+
+                <div className="ap-col-2">
+                  <iframe
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                    alt=""
+                    src={`https://youtube.com/embed/${predictionData[subSectionIndex]?.youtube_id}?start=${predictionData[subSectionIndex]?.youtube_start_time}`}
+                  />
+                  {console.log(
+                    "Video ID:",
+                    predictionData[subSectionIndex]?.youtube_id
+                  )}
+                  {console.log(
+                    "Start time:",
+                    predictionData[subSectionIndex]?.youtube_start_time
+                  )}
+                </div>
+              </div>
+            ) : null}
+            {!loading && val?.summariesActive ? (
+              <div className="active-summaries-section">
+                <div className="as-col-1">
+                  {summariesData.map((val, index) => {
+                    return (
+                      <>
+                        <div className="as-col-1-row">
+                          <div className="as-col-1-row-inner">
+                            <span style={{ color: "#6495ED" }}>
+                              {"["}
+                              {val?.time}
+                              {"]"}&nbsp;
+                            </span>
+                            {val?.summary_title.slice(0, 50)}...
+                          </div>
+                          <div
+                            onClick={() => {
+                              // setSubSectionIndex((prev) => !prev);
                               setSubSectionIndex(index);
                             }}
                           >
@@ -1014,188 +622,6 @@ function Summaries() {
                               marginTop: "10px",
                               color: "#AEAEAE",
                               fontFamily: "inter",
-                              fontSize: "14px",
-                            }}
-                          >
-                            {val?.prediction}
-                            <p style={{ color: "#BAFF2A" }}>
-                              Status :
-                              <span
-                                style={{
-                                  color:
-                                    val?.prediction_validation == "TRUE"
-                                      ? "green"
-                                      : val?.prediction_validation == "FALSE"
-                                      ? "#E72E2E"
-                                      : val?.prediction_validation ==
-                                        "PARTIALLY TRUE"
-                                      ? "#2DD22A"
-                                      : val?.prediction_validation == "PENDING"
-                                      ? "#374C98"
-                                      : "#D29D15",
-                                  fontFamily: "inter",
-                                  fontSize: "14px",
-                                }}
-                              >
-                                {" "}
-                                {val?.prediction_validation}
-                              </span>
-                            </p>
-                            <p style={{ color: "#BAFF2A" }}>
-                              Settled Date :{" "}
-                              <span
-                                style={{ fontSize: "14px", color: "#AEAEAE" }}
-                              >
-                                {val?.fixed_date}
-                              </span>
-                            </p>
-                          </div>
-                        ) : null}
-                      </>
-                    );
-                  })}
-                </div>
-
-                <div
-                  style={{
-                    position: "relative",
-                    borderRadius: "14px",
-                    backgroundColor: "#141c23",
-                    width: "492px",
-                    height: "262px",
-                    overflow: "hidden",
-                    flexShrink: "0",
-                  }}
-                >
-                  
-                  <iframe
-                  style={{
-                      position: "absolute",
-                      top: "0px",
-                      left: "0px",
-                      width: "493px",
-                      height: "262px",
-                      objectFit: "cover",
-                  }}
-                  alt=""
-                  src={`https://youtube.com/embed/${predictionData[subSectionIndex]?.youtube_id}?start=${predictionData[subSectionIndex]?.youtube_start_time}`}
-              />
-              {console.log("Video ID:", predictionData[subSectionIndex]?.youtube_id)}
-              {console.log("Start time:", predictionData[subSectionIndex]?.youtube_start_time)}
-              </div>
-              </div>
-            ) : null}
-            {!loading && val?.summariesActive ? (
-              <div
-                style={{
-                  backgroundColor: "#181818",
-                  width: "100%",
-                  height: "332px",
-                  overflow: "hidden",
-                  flexShrink: "0",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "flex-start",
-                  justifyContent: "flex-start",
-                  padding: "18px 22px",
-                  boxSizing: "border-box",
-                  gap: "26px",
-                  fontSize: "16px",
-                }}
-              >
-                <div
-                  style={{
-                    width: "100%",
-                    height: "314px",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    justifyContent: "flex-start",
-                    gap: "4px",
-                    overflowY: "scroll",
-                  }}
-                >
-                  {summariesData.map((val, index) => {
-                    return (
-                      <>
-                        <div
-                          style={{
-                            width: "687px",
-                            height: "auto",
-                            minHeight: "40px",
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            justifyContent: "flex-start",
-                            padding: "24px 0px",
-                            boxSizing: "border-box",
-                            cursor: "pointer",
-                          }}
-                        >
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "row",
-                              alignItems: "center",
-                              justifyContent: "flex-start",
-                            }}
-                          >
-                            <div
-                              style={{
-                                position: "relative",
-                                fontWeight: "500",
-                                display: "flex",
-                                alignItems: "center",
-                                width: "664px",
-                                height: "30px",
-                                flexShrink: "0",
-                                fontSize: "16px",
-                                fontFamily: "inter",
-                              }}
-                            >
-                              <span style={{ color: '#6495ED' }}>
-                                  {'['}{val?.time}{']'}&nbsp;
-                              </span>
-                              {val?.summary_title.slice(0, 60)}...
-
-                            </div>
-                            <div
-                              onClick={() => {
-                                // setSubSection((prev) => !prev);
-                                setSubSectionIndex(index);
-                              }}
-                            >
-                              {subSectionIndex === index ? (
-                                <img
-                                  style={{
-                                    position: "relative",
-                                    width: "21.5px",
-                                    height: "21.5px",
-                                  }}
-                                  alt=""
-                                  src="/vector-1433.svg"
-                                />
-                              ) : (
-                                <img
-                                  style={{
-                                    position: "relative",
-                                    width: "21.5px",
-                                    height: "21.5px",
-                                  }}
-                                  alt=""
-                                  src="/vector-278.svg"
-                                />
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                        {subSectionIndex === index ? (
-                          <div
-                            style={{
-                              paddingRight: "20px",
-                              marginTop: "10px",
-                              color: "#AEAEAE",
-                              fontFamily: "inter",
                               fontSize: "16px",
                             }}
                           >
@@ -1207,32 +633,24 @@ function Summaries() {
                   })}
                 </div>
 
-                <div
-                  style={{
-                    position: "relative",
-                    borderRadius: "14px",
-                    backgroundColor: "#141c23",
-                    width: "492px",
-                    height: "262px",
-                    overflow: "hidden",
-                    flexShrink: "0",
-                  }}
-                >
+                <div className="as-col-2">
                   <iframe
                     style={{
-                      position: "absolute",
-                      top: "0px",
-                      left: "0px",
-                      width: "493px",
-                      height: "262px",
+                      width: "100%",
+                      height: "100%",
                       objectFit: "cover",
                     }}
                     alt=""
                     src={`https://youtube.com/embed/${summariesData[subSectionIndex]?.youtube_id}?start=${summariesData[subSectionIndex]?.youtube_start_time}`}
-                    />
-                    {console.log("Video ID:", summariesData[subSectionIndex]?.youtube_id)}
-                    {console.log("Start time:", summariesData[subSectionIndex]?.youtube_start_time)}
-                  
+                  />
+                  {console.log(
+                    "Video ID:",
+                    summariesData[subSectionIndex]?.youtube_id
+                  )}
+                  {console.log(
+                    "Start time:",
+                    summariesData[subSectionIndex]?.youtube_start_time
+                  )}
                 </div>
               </div>
             ) : null}
@@ -1242,19 +660,10 @@ function Summaries() {
                   return (
                     <div
                       style={{
-                        backgroundColor: index % 2 === 0 ? "#282828" : "#202020",
-                        width: "100%",
-                        // Removed overflow: "hidden" to allow the container to grow with the content
-                        flexShrink: "0",
-                        display: "flex",
-                        flexDirection: "row",
-                        alignItems: "center", // This will vertically center the items in the container
-                        justifyContent: "flex-start",
-                        padding: "15px 15px", // Adjust the top and bottom padding as needed for buffer
-                        boxSizing: "border-box", // Makes sure the padding is included in the width
-                        gap: "26px",
-                        color: "#baff2a",
-                                            }}
+                        backgroundColor:
+                          index % 2 === 0 ? "#282828" : "#202020",
+                      }}
+                      className="active-transcript-section"
                     >
                       <div
                         style={{
@@ -1314,7 +723,11 @@ function Summaries() {
                             <img
                               src={val.image_url}
                               alt={val.user_name}
-                              title={val.user_name.startsWith("Unknown") ? "" : val.user_name} // Tooltip on hover
+                              title={
+                                val.user_name.startsWith("Unknown")
+                                  ? ""
+                                  : val.user_name
+                              } // Tooltip on hover
                               style={{
                                 width: "50px", // Smaller size
                                 height: "50px", // Ensure width and height are the same for a circle
@@ -1327,7 +740,6 @@ function Summaries() {
                             />
                           ) : null}
                         </div>
-
                       </div>
                       <div
                         style={{
@@ -1360,14 +772,278 @@ function Summaries() {
                 })}
               </>
             ) : null}
+            {!loading && val?.Active ? (
+              <div className="mob-active-col">
+                <Tabs
+                  items={[
+                    {
+                      title: "Summaries",
+                      content: (
+                        <div className="mob-summaries-active">
+                          <div className="mob-summaries">
+                            {summariesData.map((val, index) => {
+                              return (
+                                <>
+                                  <div className="as-col-1-row" key={index}>
+                                    <div className="">
+                                      {val?.summary_title.slice(0, 50)}...
+                                    </div>
+                                    <div
+                                      onClick={() => {
+                                        // setSubSectionIndex((prev) => !prev);
+                                        setSubSectionIndex(index);
+                                      }}
+                                    >
+                                      {subSectionIndex === index ? (
+                                        <img
+                                          style={{
+                                            position: "relative",
+                                            width: "21.5px",
+                                            height: "21.5px",
+                                          }}
+                                          alt=""
+                                          src="/vector-1433.svg"
+                                        />
+                                      ) : (
+                                        <img
+                                          style={{
+                                            position: "relative",
+                                            width: "21.5px",
+                                            height: "21.5px",
+                                          }}
+                                          alt=""
+                                          src="/vector-278.svg"
+                                        />
+                                      )}
+                                    </div>
+                                  </div>
+                                  {subSectionIndex === index ? (
+                                    <div
+                                      style={{
+                                        paddingRight: "20px",
+                                        marginTop: "10px",
+                                        color: "#AEAEAE",
+                                        fontFamily: "inter",
+                                        fontSize: "16px",
+                                      }}
+                                    >
+                                      {val?.summary_text}
+                                    </div>
+                                  ) : null}
+                                </>
+                              );
+                            })}
+                          </div>
+                          <div className="mob-full-transcript">
+                            <div className="head">Full Transcript</div>
+                            {fullTranscriptData.map((val, index) => (
+                              <div className="body" key={index}>
+                                <div className="">
+                                  Duration:{" "}
+                                  <span style={{ color: "#aeaeae" }}>
+                                    {val?.time_range}
+                                  </span>
+                                </div>
+                                <div className="">
+                                  {" "}
+                                  {val.user_name.startsWith("Unknown")
+                                    ? ""
+                                    : val.user_name}
+                                </div>
+                                <div className="">{val?.labelled_segments}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ),
+                    },
+                    {
+                      title: "Predictions",
+                      content: (
+                        <div className="mob-predictions-active">
+                          {predictionData.map((val, index) => {
+                            return (
+                              <div className="body">
+                                <div className="ap-col-1-row">
+                                  <div
+                                    style={{
+                                      position: "relative",
+                                      fontWeight: "500",
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    {val?.prediction.slice(0, 40)}...
+                                  </div>
+                                  <div
+                                    onClick={() => {
+                                      // setSubSection((prev) => !prev);
+                                      console.log(index);
+                                      setSubSectionIndex(index);
+                                    }}
+                                  >
+                                    {subSectionIndex === index ? (
+                                      <img alt="" src="/vector-1433.svg" />
+                                    ) : (
+                                      <img alt="" src="/vector-278.svg" />
+                                    )}
+                                  </div>
+                                </div>
+                                {subSectionIndex === index ? (
+                                  <div
+                                    style={{
+                                      paddingRight: "20px",
+                                      marginTop: "10px",
+                                      color: "#AEAEAE",
+                                      fontFamily: "inter",
+                                      fontSize: "14px",
+                                    }}
+                                  >
+                                    {val?.prediction}
+                                    <p style={{ color: "#4B6CC2" }}>
+                                      Status :
+                                      <span
+                                        style={{
+                                          color:
+                                            val?.prediction_validation == "TRUE"
+                                              ? "green"
+                                              : val?.prediction_validation ==
+                                                "FALSE"
+                                              ? "#E72E2E"
+                                              : val?.prediction_validation ==
+                                                "PARTIALLY TRUE"
+                                              ? "#2DD22A"
+                                              : val?.prediction_validation ==
+                                                "PENDING"
+                                              ? "#374C98"
+                                              : "#D29D15",
+                                          fontFamily: "inter",
+                                          fontSize: "14px",
+                                        }}
+                                      >
+                                        {" "}
+                                        {val?.prediction_validation}
+                                      </span>
+                                    </p>
+                                    <p style={{ color: "#4B6CC2" }}>
+                                      Settled Date :{" "}
+                                      <span
+                                        style={{
+                                          fontSize: "14px",
+                                          color: "#AEAEAE",
+                                        }}
+                                      >
+                                        {val?.fixed_date}
+                                      </span>
+                                    </p>
+                                  </div>
+                                ) : null}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      ),
+                    },
+                    {
+                      title: "People",
+                      content: (
+                        <div className="mob-people-active">
+                          {peopleData.map((val, index) => {
+                            return (
+                              <div className="mob-people-section">
+                                <div className="ps-header">
+                                  <div className="col-1">
+                                    <div className="col-img">
+                                      <img
+                                        alt=""
+                                        src={val?.image_url}
+                                        style={{
+                                          width: "40px",
+                                          height: "40px",
+                                          objectFit: "cover",
+                                          borderRadius: "50%",
+                                        }}
+                                      />
+                                    </div>
+                                    <div className="col-content">
+                                      <h6>
+                                        {val?.first_name.startsWith("Unknown")
+                                          ? "Unknown"
+                                          : val?.first_name +
+                                            " " +
+                                            val?.last_name}
+                                      </h6>
+                                      <span style={{ color: "#aeaeae" }}>
+                                        #85
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div
+                                    className="col-2"
+                                    onClick={() =>
+                                      navigate("/Profiles", {
+                                        state: { id: val?.user_id },
+                                      })
+                                    }
+                                  >
+                                    Full Profile
+                                  </div>
+                                </div>
+                                <div className="ps-body">
+                                  <div className="col">
+                                    <LuCalendarDays
+                                      style={{ fontSize: "24px" }}
+                                    />
+                                    <div className="detail">
+                                      <h6>Score</h6>
+                                      <span>
+                                        {Math.floor(val?.accuracy_score)}%
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div className="col">
+                                    <LuCalendarDays
+                                      style={{ fontSize: "24px" }}
+                                    />
+                                    <div className="detail">
+                                      <h6>Predictions</h6>
+                                      <span>{val?.total_predictions}</span>
+                                    </div>
+                                  </div>
+                                  <div className="col">
+                                    <LuCalendarDays
+                                      style={{ fontSize: "24px" }}
+                                    />
+                                    <div className="detail">
+                                      <h6>Pending</h6>
+                                      <span>{val?.pending_predictions}</span>
+                                    </div>
+                                  </div>
+                                  <div className="col">
+                                    <LuCalendarDays
+                                      style={{ fontSize: "24px" }}
+                                    />
+                                    <div className="detail">
+                                      <h6>EP-Predictions</h6>
+                                      <span>{val?.episode_predictions}</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      ),
+                    },
+                  ]}
+                />
+              </div>
+            ) : null}
 
-            {activeIndex == index && loading ? (
+            {activeIndex === index && loading ? (
               <div
                 style={{
                   display: "flex",
-
-                  // alignContent: "center",
-                  // backgroundColor: "red",
                   width: "100%",
                   justifyContent: "center",
                 }}

@@ -12,14 +12,11 @@ import {
   Legend,
 } from "chart.js";
 import { getMarket, getMarketGraph } from "../services/Markets.service";
-import CircularProgress from "@mui/material/CircularProgress";
 import { useLocation } from "react-router-dom";
 import Chart from "chart.js/auto";
 import annotationPlugin from "chartjs-plugin-annotation";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import "../styles/markets.css";
-import jsondata from "../jsondata/react_test.json";
-import newjsondata from "../jsondata/inxy-22dec30.json";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -54,7 +51,7 @@ function Markets() {
   ];
   // fill: linear-gradient(180deg, rgba(186, 255, 42, 0.13) 0%, rgba(186, 255, 42, 0.00) 100%);
   // stroke-width: 1px;
-  // stroke: #BAFF2A;
+  // stroke: #4B6CC2;
   useEffect(() => {
     getMarket()
       .then((res) => {
@@ -86,7 +83,7 @@ function Markets() {
         fill: true,
         lineTension: 0.1,
         backgroundColor: backgroundColor, // Use the custom function
-        borderColor: "#BAFF2A",
+        borderColor: "#4B6CC2",
         borderWidth: 1,
         data: currentGraph?.values,
         pointRadius: 0,
@@ -129,30 +126,12 @@ function Markets() {
   };
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: "76px",
-        left: "237px",
-        height: "90vh",
-        overflowY: "scroll",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        justifyContent: "flex-start",
-        gap: "2px",
-        fontSize: "20px",
-        color: "#baff2a",
-        minWidth: "calc(100% - 240px)",
-        marginBottom: "80px",
-        overflowStyle: "none",
-      }}
-    >
+    <div className="market-section">
       {/* User Info Row Starts */}
       {marketData?.map((val, index) => {
         return (
           <>
-            <div className="user-info-row">
+            <div className="desktop-user-info-row">
               <div className="image-section">
                 <img
                   className="user-image"
@@ -164,130 +143,36 @@ function Markets() {
                 <b className="title-section-text">
                   {val?.metadata.event_title}
                 </b>
-                <div
-                  style={{
-                    width: "660px",
-                    height: "48px",
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "flex-start",
-                    gap: "10px",
-                    fontSize: "18px",
-                    color: "#baff2a",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "171px",
-                      height: "40px",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      justifyContent: "flex-start",
-                    }}
-                  >
+                <div className="title-section-details">
+                  <div className="column ">
+                    <div>{val?.metadata.category}</div>
                     <div
                       style={{
-                        position: "relative",
-                        fontWeight: "500",
-                        display: "flex",
-                        alignItems: "center",
-                        width: "160px",
-                        height: "20px",
-                        flexShrink: "0",
-                      }}
-                    >
-                      {val?.metadata.category}
-                    </div>
-                    <div
-                      style={{
-                        position: "relative",
-                        fontSize: "16px",
                         color: "#aeaeae",
-                        display: "flex",
-                        alignItems: "center",
-                        width: "160px",
-                        height: "20px",
-                        flexShrink: "0",
                       }}
                     >
                       Topic
                     </div>
                   </div>
-                  <div
-                    style={{
-                      width: "171px",
-                      height: "40px",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      justifyContent: "flex-start",
-                    }}
-                  >
-                    <div
-                      style={{
-                        position: "relative",
-                        fontWeight: "500",
-                        display: "flex",
-                        alignItems: "center",
-                        width: "160px",
-                        height: "20px",
-                        flexShrink: "0",
-                      }}
-                    >
+                  <div className="column ">
+                    <div>
                       <span style={{ lineBreak: "anywhere", width: "100%" }}>
                         <span>{val?.metadata.settled_price}</span>
                       </span>
                     </div>
                     <div
                       style={{
-                        position: "relative",
-                        fontSize: "16px",
                         color: "#aeaeae",
-                        display: "flex",
-                        alignItems: "center",
-                        width: "171px",
-                        height: "20px",
-                        flexShrink: "0",
                       }}
                     >
                       Market Prediction
                     </div>
                   </div>
-                  <div
-                    style={{
-                      width: "auto",
-                      height: "40px",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      justifyContent: "flex-start",
-                    }}
-                  >
+                  <div className="column ">
+                    <div>{val?.metadata.settled_date}</div>
                     <div
                       style={{
-                        position: "relative",
-                        fontWeight: "500",
-                        display: "flex",
-                        alignItems: "center",
-                        width: "auto",
-                        height: "20px",
-                        flexShrink: "0",
-                      }}
-                    >
-                      {val?.metadata.settled_date}
-                    </div>
-                    <div
-                      style={{
-                        position: "relative",
-                        fontSize: "16px",
                         color: "#aeaeae",
-                        display: "flex",
-                        alignItems: "center",
-                        width: "160px",
-                        height: "20px",
-                        flexShrink: "0",
                       }}
                     >
                       Close Date
@@ -295,89 +180,15 @@ function Markets() {
                   </div>
                 </div>
               </div>
-              <div
-                style={{
-                  width: "234px",
-                  height: "108px",
-                  overflow: "hidden",
-                  flexShrink: "0",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  justifyContent: "center",
-                  padding: "10px",
-                  boxSizing: "border-box",
-                  color: "#26272c",
-                  fontFamily: "Poppins",
-                }}
-              >
-                <div
-                  style={{
-                    width: "182px",
-                    height: "72px",
-                    overflow: "hidden",
-                    flexShrink: "0",
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "flex-start",
-                    padding: "2px 0px",
-                    boxSizing: "border-box",
-                  }}
-                >
-                  <img
-                    style={{
-                      position: "relative",
-                      borderRadius: "50%",
-                      width: "70px",
-                      height: "70px",
-                      objectFit: "cover",
-                    }}
-                    alt=""
-                    src="/image-141@2x.png"
-                  />
-                  <img
-                    style={{
-                      position: "relative",
-                      borderRadius: "50%",
-                      width: "70px",
-                      height: "70px",
-                      objectFit: "cover",
-                      marginLeft: "-14px",
-                    }}
-                    alt=""
-                    src="/image-141@2x.png"
-                  />
-                  <div
-                    style={{
-                      position: "relative",
-                      borderRadius: "35px",
-                      backgroundColor: "#baff2a",
-                      width: "70px",
-                      height: "70px",
-                      overflow: "hidden",
-                      flexShrink: "0",
-                      marginLeft: "-14px",
-                    }}
-                  >
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "23px",
-                        left: "35%",
-                        letterSpacing: "0.3px",
-                        lineHeight: "150%",
-                        display: "flex",
-                        alignItems: "center",
-                        width: "32px",
-                        height: "24px",
-                        fontFamily: "inter",
-                      }}
-                    >
-                      5+
-                    </div>
-                  </div>
-                </div>
+              <div className="title-images">
+                <img className="image-block" alt="" src="/image-141@2x.png" />
+                <img
+                  className="image-block"
+                  alt=""
+                  src="/image-141@2x.png"
+                  style={{ marginLeft: "-22px" }}
+                />
+                <div className="blue-disc">5+</div>
               </div>
               <div
                 style={{
@@ -414,24 +225,68 @@ function Markets() {
                 )}
               </div>
             </div>
+
+            <div className="mob-user-info-row">
+              <div className="info-section-1">
+                <div className="text-section">
+                  <div className="topic">
+                    <span style={{ color: "#aeaeae" }}>Topic :</span>{" "}
+                    {val?.metadata.category}
+                  </div>
+                  <div className="text">{val?.metadata.event_title}</div>
+                </div>
+                <div className="image-section">
+                  <img alt="user-image" src={val?.image_url} />
+                </div>
+              </div>
+              <div className="info-section-2">
+                <div className="images-block">
+                  <img className="image-block" alt="" src="/image-141@2x.png" />
+                  <img
+                    className="image-block"
+                    alt=""
+                    src="/image-141@2x.png"
+                    style={{ marginLeft: "-22px" }}
+                  />
+                  <div className="yellow-disc">5+</div>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  onClick={() => onClickToggle(index)}
+                >
+                  {val?.peopleActive ? (
+                    <img
+                      style={{
+                        position: "relative",
+                        width: "21.5px",
+                        height: "21.5px",
+                      }}
+                      alt=""
+                      src="/vector-1433.svg"
+                    />
+                  ) : (
+                    <img
+                      style={{
+                        position: "relative",
+                        width: "21.5px",
+                        height: "21.5px",
+                      }}
+                      alt=""
+                      src="/vector-278.svg"
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+
             {/* Graph Section Starts */}
             {activeIndex == index && val?.peopleActive ? (
-              <div
-                style={{
-                  backgroundColor: "#181818",
-                  width: "100%",
-                  height: "486px",
-                  overflow: "hidden",
-                  flexShrink: "0",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  gap: "37px",
-                  fontSize: "18px",
-                  color: "#baff2a",
-                }}
-              >
+              <div className="graph-container">
                 <Line
                   style={{ width: "100%" }}
                   plugins={[ChartDataLabels]}
@@ -538,9 +393,6 @@ function Markets() {
               <div
                 style={{
                   display: "flex",
-
-                  // alignContent: "center",
-                  // backgroundColor: "red",
                   width: "100%",
                   justifyContent: "center",
                 }}

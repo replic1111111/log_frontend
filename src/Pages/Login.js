@@ -4,7 +4,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import "../styles/login.css";
 import { useNavigate } from "react-router-dom";
-import logo1 from '../assests/logo1.png';
+import logo1 from "../assests/logo1.png";
 
 function Login() {
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ function Login() {
         alignItems: "center",
         height: "100vh",
         fontSize: "24px",
-        color: "#baff2a",
+        color: "#4B6CC2",
         fontFamily: "'Odibee Sans'",
       }}
     >
@@ -79,7 +79,7 @@ function Login() {
             boxSizing: "border-box",
             textAlign: "center",
             fontSize: "20px",
-            color: "#baff2a",
+            color: "#4B6CC2",
             fontFamily: "'Odibee Sans'",
           }}
           //   onClick={() => logout()}
@@ -96,11 +96,21 @@ function Login() {
               flexShrink: "0",
             }}
           >
-<div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }}>
-    <img src={logo1} alt="Logo" style={{ maxWidth: '100%', maxHeight: '100%' }} /> {/* Adjust maxWidth and maxHeight as needed */}
-</div>
-
-
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+              }}
+            >
+              <img
+                src={logo1}
+                alt="Logo"
+                style={{ maxWidth: "100%", maxHeight: "100%" }}
+              />{" "}
+              {/* Adjust maxWidth and maxHeight as needed */}
+            </div>
           </div>
         </div>
         <div

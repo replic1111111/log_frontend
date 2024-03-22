@@ -72,7 +72,7 @@ const Predictions = () => {
         justifyContent: "flex-start",
         gap: "2px",
         fontSize: "20px",
-        color: "#baff2a",
+        color: "#4B6CC2",
         minWidth: "calc(100% - 240px)",
         marginBottom: "80px",
         overflowStyle: "none",
@@ -320,7 +320,7 @@ const Predictions = () => {
                   style={{
                     position: "relative",
                     borderRadius: "25px",
-                    border: "1px solid #baff2a",
+                    border: "1px solid #4B6CC2",
                     boxSizing: "border-box",
                     width: "40px",
                     height: "40px",
@@ -336,7 +336,7 @@ const Predictions = () => {
                     height: "56px",
                     overflow: "hidden",
                     flexShrink: "0",
-                    border: "1px solid #baff2a",
+                    border: "1px solid #4B6CC2",
                     // position: "absolute",
                     // top: "3px",
                     // left: "3px",
@@ -453,7 +453,7 @@ const Predictions = () => {
                   alt=""
                   src="/marketgraph.svg"
                 />
-                <div >
+                <div>
                   {val?.predictionActive ? (
                     <img
                       style={{
@@ -564,7 +564,7 @@ const Predictions = () => {
                       gap: "55px",
                       textAlign: "center",
                       fontSize: "12px",
-                      color: "#baff2a",
+                      color: "#4B6CC2",
                     }}
                   >
                     <div
@@ -593,7 +593,7 @@ const Predictions = () => {
                           justifyContent: "center",
                           textAlign: "center",
                           fontSize: "11px",
-                          color: "#baff2a",
+                          color: "#4B6CC2",
                         }}
                         onClick={() =>
                           navigate("/Summaries", {
@@ -632,7 +632,7 @@ const Predictions = () => {
                       <div
                         style={{
                           position: "relative",
-                          color: "#baff2a",
+                          color: "#4B6CC2",
                           display: "flex",
                           alignItems: "center",
                           width: "160px",
@@ -685,7 +685,7 @@ const Predictions = () => {
                           position: "relative",
                           fontSize: "16px",
                           fontWeight: "500",
-                          color: "#baff2a",
+                          color: "#4B6CC2",
                           display: "flex",
                           alignItems: "center",
                           width: "160px",
@@ -721,7 +721,7 @@ const Predictions = () => {
                       <div
                         style={{
                           position: "relative",
-                          color: "#baff2a",
+                          color: "#4B6CC2",
                           display: "flex",
                           alignItems: "center",
                           width: "126px",
@@ -748,7 +748,7 @@ const Predictions = () => {
                       gap: "53px",
                       textAlign: "center",
                       fontSize: "12px",
-                      color: "#baff2a",
+                      color: "#4B6CC2",
                     }}
                   >
                     <div
@@ -778,7 +778,7 @@ const Predictions = () => {
                           justifyContent: "center",
                           textAlign: "center",
                           fontSize: "11px",
-                          color: "#baff2a",
+                          color: "#4B6CC2",
                         }}
                         onClick={() =>
                           navigate("/Profiles", {
@@ -816,7 +816,7 @@ const Predictions = () => {
                           justifyContent: "center",
                           textAlign: "center",
                           fontSize: "11px",
-                          color: "#baff2a",
+                          color: "#4B6CC2",
                         }}
                         onClick={() =>
                           navigate("/Markets", {
@@ -856,22 +856,19 @@ const Predictions = () => {
                     {console.log("YouTube ID:", val?.youtube_id)}
                     {console.log("Start Time:", val?.youtube_start_time)}
                     <iframe
-                        style={{
-                            position: "absolute",
-                            top: "0px",
-                            left: "0px",
-                            width: "493px",
-                            height: "262px",
-                            objectFit: "cover",
-                        }}
-                        alt=""
-                        src={`https://www.youtube.com/embed/${val?.youtube_id}?start=${val?.youtube_start_time}`}
+                      style={{
+                        position: "absolute",
+                        top: "0px",
+                        left: "0px",
+                        width: "493px",
+                        height: "262px",
+                        objectFit: "cover",
+                      }}
+                      alt=""
+                      src={`https://www.youtube.com/embed/${val?.youtube_id}?start=${val?.youtube_start_time}`}
                     />
+                  </div>
                 </div>
-                
-                </div>
-                
-                
               </div>
             ) : null}
           </>
@@ -879,7 +876,6 @@ const Predictions = () => {
       })}
       {/* Array Data Ends */}
     </div>
-    
   );
 };
 

@@ -8,8 +8,8 @@ function Header() {
   const [userData, setUserData] = useState();
   const navigate = useNavigate();
   const handleRedirect = () => {
-    // window.location.href = "http://localhost:3000";
-    window.location.href = "https://www.luckyorgenius.com/";
+    window.location.href = "http://localhost:3000";
+    // window.location.href = "https://www.luckyorgenius.com/";
   };
   useEffect(() => {
     let data = localStorage.getItem("userdata");
@@ -22,8 +22,8 @@ function Header() {
       <div className="header">
         <b className="page-name">{pathname.slice(1).toLocaleUpperCase()}</b>
         {/* SearchBar Starts */}
-        <div>
-          <input className="search-bar " placeholder="Search" />
+        <div className="search-bar">
+          <input className="" placeholder="Search" />
           <img className="search-icon" alt="" src="/vector.svg" />
         </div>
         {/* SearchBar Ends */}

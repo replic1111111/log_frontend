@@ -1,6 +1,6 @@
 <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="View">
-<path id="Oval" fill-rule="evenodd" clip-rule="evenodd" d="M25 39.0625C33.3333 39.0625 40.1042 34.375 45.3125 25C40.1042 15.625 33.3333 10.9375 25 10.9375C16.6667 10.9375 9.89583 15.625 4.6875 25C9.89583 34.375 16.6667 39.0625 25 39.0625Z" stroke="#BAFF2A" stroke-width="1.5"/>
-<circle id="Oval_2" cx="25" cy="25" r="7.8125" stroke="#BAFF2A" stroke-width="1.5"/>
+<path id="Oval" fill-rule="evenodd" clip-rule="evenodd" d="M25 39.0625C33.3333 39.0625 40.1042 34.375 45.3125 25C40.1042 15.625 33.3333 10.9375 25 10.9375C16.6667 10.9375 9.89583 15.625 4.6875 25C9.89583 34.375 16.6667 39.0625 25 39.0625Z" stroke="#baff2a" stroke-width="1.5"/>
+<circle id="Oval_2" cx="25" cy="25" r="7.8125" stroke="#baff2a" stroke-width="1.5"/>
 </g>
 </svg>

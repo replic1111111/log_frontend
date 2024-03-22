@@ -2,14 +2,18 @@ import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { channelsData } from "../services/channels.service";
 import { useNavigate } from "react-router-dom";
+import "../styles/mychannels.css";
+import AddChannelModal from "../components/addChannelModal";
+import { LuCalendarDays } from "react-icons/lu";
 
 function MyChannels() {
   const [channelData, setChannelData] = useState([]);
+  const [openAddChannel, setOpenAddChannel] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
   const navigate = useNavigate();
 
   const handleSubSection = (index) => {
-    if (index == activeIndex) {
+    if (index === activeIndex) {
       setActiveIndex(-1);
       return;
     }
@@ -18,7 +22,7 @@ function MyChannels() {
   useEffect(() => {
     channelsData()
       .then((res) => {
-        console.log("res chaneel:::", res.data);
+        // console.log("res chaneel:::", res.data);
         setChannelData([...res.data]);
       })
       .catch((err) => {
@@ -26,313 +30,45 @@ function MyChannels() {
       });
   }, []);
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: "76px",
-        left: "237px",
-        height: "90vh",
-        overflowY: "scroll",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
-        justifyContent: "flex-start",
-        gap: "2px",
-        fontSize: "20px",
-        color: "#baff2a",
-        minWidth: "calc(100% - 240px)",
-        marginBottom: "80px",
-        overflowStyle: "none",
-      }}
-    >
+    <div className="myChannel">
       {/* Add Channel div Starts */}
-      <div
-        style={{
-          backgroundColor: "#282828",
-          width: "100%",
-          height: "103px",
-          overflow: "hidden",
-          flexShrink: "0",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "flex-start",
-          padding: "7px 22px",
-          boxSizing: "border-box",
-          gap: "26px",
-          fontSize: "20px",
-        }}
-      >
-        <div
-          style={{
-            width: "354px",
-            height: "40px",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "flex-start",
-          }}
-        >
-          <div
-            style={{
-              position: "relative",
-              fontWeight: "600",
-              display: "flex",
-              alignItems: "center",
-              width: "200px",
-              height: "20px",
-              flexShrink: "0",
-            }}
-          >
-            Add Channel
-          </div>
-        </div>
-        <div
-          style={{
-            borderRadius: "10px",
-            backgroundColor: "#181818",
-            backdropFilter: "blur(40px)",
-            border: "1px solid rgba(174, 174, 174, 0.5)",
-            boxSizing: "border-box",
-            width: "834px",
-            height: "60px",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "flex-start",
-            padding: "2px 7px 2px 20px",
-            gap: "32px",
-            fontFamily: "Lato",
-          }}
-        >
-          <input
-            style={{
-              position: "relative",
-              lineHeight: "40px",
-              display: "flex",
-              alignItems: "center",
-              width: "607px",
-              height: "38px",
-              backgroundColor: "#181818",
-              backdropFilter: "blur(40px)",
-              border: 0,
-              color: "#fff",
-              fontFamily: "inter",
-            }}
-            placeholder="Enter Channel Url"
-          />
-          <Button
-            style={{
-              borderRadius: "10px",
-              backgroundColor: "#282828",
-              width: "170px",
-              height: "50px",
-              overflow: "hidden",
-              flexShrink: "0",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              // padding: "28px 25px",
-              boxSizing: "border-box",
-              position: "relative",
-              textAlign: "center",
-              color: "#baff2a",
-              // margin: "2px",
-            }}
-            onClick={() => alert("In Progress...")}
-          >
+      <div className="addChannel-section">
+        <div className="block-1">Add New Channel</div>
+        <div className="block-2">
+          <input placeholder="Enter Channel Url" />
+          <Button className="btn" onClick={() => alert("In Progress...")}>
             ADD
           </Button>
         </div>
-      </div>
-      <div
-        style={{
-          backgroundColor: "#fff",
-          // overflow: "hidden",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: "20px",
-          color: "#baff2a",
-          width: "100%",
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: "#282828",
-            width: "100%",
-            height: "54px",
-            overflow: "hidden",
-            flexShrink: "0",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "flex-start",
-            padding: "7px 22px",
-            boxSizing: "border-box",
-            gap: "26px",
-          }}
-        >
-          <div
-            style={{
-              width: "354px",
-              height: "40px",
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "flex-start",
-            }}
-          >
-            <div
+        <div className="mob-block-2">
+          <div onClick={() => setOpenAddChannel(true)}>
+            <img
               style={{
                 position: "relative",
-                fontWeight: "600",
-                display: "flex",
-                alignItems: "center",
-                width: "200px",
-                height: "20px",
-                flexShrink: "0",
+                width: "21.5px",
+                height: "21.5px",
               }}
-            >
-              Channel Name
-            </div>
-          </div>
-          <div
-            style={{
-              width: "200px",
-              height: "40px",
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "flex-start",
-            }}
-          >
-            <div
-              style={{
-                position: "relative",
-                fontWeight: "600",
-                display: "flex",
-                alignItems: "center",
-                width: "200px",
-                height: "39px",
-                flexShrink: "0",
-              }}
-            >
-              Summaries
-            </div>
-          </div>
-          <div
-            style={{
-              width: "201px",
-              height: "40px",
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "flex-start",
-            }}
-          >
-            <div
-              style={{
-                position: "relative",
-                fontWeight: "600",
-                display: "flex",
-                alignItems: "center",
-                width: "117px",
-                height: "20px",
-                flexShrink: "0",
-              }}
-            >
-              Predictions
-            </div>
-          </div>
-          <div
-            style={{
-              width: "212px",
-              height: "40px",
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "flex-start",
-            }}
-          >
-            <div
-              style={{
-                position: "relative",
-                fontWeight: "600",
-                display: "flex",
-                alignItems: "center",
-                width: "212px",
-                height: "20px",
-                flexShrink: "0",
-              }}
-            >
-              Prediction Accuracy
-            </div>
-          </div>
-          <div
-            style={{
-              width: "152px",
-              height: "40px",
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "flex-end",
-              textAlign: "center",
-            }}
-          >
-            <div
-              style={{
-                position: "relative",
-                fontWeight: "600",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "125px",
-                height: "39px",
-                flexShrink: "0",
-              }}
-            >
-              View More
-            </div>
+              alt=""
+              src="/vector-278.svg"
+            />
           </div>
         </div>
+      </div>
+      {/* Add Channel div Ends */}
+      <div className="channel-header">
+        <div>Channel Name</div>
+        <div>Summaries</div>
+        <div>Predictions</div>
+        <div>Prediction Accuracy</div>
+        <div>View More</div>
       </div>
       {/* Add Channel div Ends */}
       {/* Row Data Starts */}
       {channelData.map((val, index) => {
         return (
           <>
-            <div
-              style={{
-                backgroundColor: "#282828",
-                width: "100%",
-                height: "71px",
-                overflow: "hidden",
-                flexShrink: "0",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "flex-start",
-                padding: "7px 22px",
-                boxSizing: "border-box",
-                gap: "26px",
-              }}
-            >
-              <div
-                style={{
-                  width: "354px",
-                  height: "54px",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  gap: "16px",
-                  fontSize: "20px",
-                  color: "#baff2a",
-                }}
-              >
+            <div className="channelData-row">
+              <div className="block">
                 <img
                   style={{
                     position: "relative",
@@ -344,111 +80,12 @@ function MyChannels() {
                   alt=""
                   src={val?.ChannelImageUrl}
                 />
-                <div
-                  style={{
-                    position: "relative",
-                    fontWeight: "600",
-                    display: "flex",
-                    alignItems: "center",
-                    width: "290px",
-                    height: "27px",
-                    flexShrink: "0",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  {val?.ChannelName.slice(0, 20)}
-                </div>
+                <div className="">{val?.ChannelName.slice(0, 20)}</div>
               </div>
-              <div
-                style={{
-                  width: "200px",
-                  height: "68px",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                }}
-              >
-                <div
-                  style={{
-                    position: "relative",
-                    fontWeight: "400",
-                    display: "flex",
-                    alignItems: "center",
-                    width: "200px",
-                    height: "39px",
-                    flexShrink: "0",
-                    color: "#fff",
-                  }}
-                >
-                  {val?.Summaries}
-                </div>
-              </div>
-              <div
-                style={{
-                  width: "200px",
-                  height: "68px",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                }}
-              >
-                <div
-                  style={{
-                    position: "relative",
-                    fontWeight: "400",
-                    display: "flex",
-                    alignItems: "center",
-                    width: "200px",
-                    height: "39px",
-                    flexShrink: "0",
-                    color: "#fff",
-                  }}
-                >
-                  {val?.Predictions}
-                </div>
-              </div>
-              <div
-                style={{
-                  width: "200px",
-                  height: "68px",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                }}
-              >
-                <div
-                  style={{
-                    position: "relative",
-                    fontWeight: "400",
-                    display: "flex",
-                    alignItems: "center",
-                    width: "200px",
-                    height: "39px",
-                    flexShrink: "0",
-                    color: "#fff",
-                  }}
-                >
-                  {val?.PredictionAccuracy}
-                </div>
-              </div>
-              <div
-                style={{
-                  width: "115px",
-                  height: "58px",
-                  overflow: "hidden",
-                  flexShrink: "0",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-end",
-                  padding: "21px 1px",
-                  boxSizing: "border-box",
-                }}
-                onClick={() => handleSubSection(index)}
-              >
+              <div className="block">{val?.Summaries}</div>
+              <div className="block">{val?.Predictions}</div>
+              <div className="block">{val?.PredictionAccuracy}</div>
+              <div className="block" onClick={() => handleSubSection(index)}>
                 {activeIndex == index ? (
                   <img
                     style={{
@@ -472,74 +109,112 @@ function MyChannels() {
                 )}
               </div>
             </div>
-            {/* Hidden Data Starts */}
-            {index == activeIndex ? (
-              <div
-                style={{
-                  backgroundColor: "#282828",
-                  width: "100%",
-                  height: "auto",
-                  overflow: "hidden",
-                  flexShrink: "0",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  justifyContent: "center",
-                  padding: "15px 22px",
-                  boxSizing: "border-box",
-                  gap: "17px",
-                  fontSize: "24px",
-                  color: "#baff2a",
-                }}
-              >
-                <div style={{ display: "flex", flexDirection: "row" }}>
-                  <div
-                    style={{
-                      position: "relative",
-                      fontSize: "24px",
-                      fontWeight: "600",
-                      display: "flex",
-                      alignItems: "center",
-                      width: "290px",
-                      height: "68px",
-                      flexShrink: "0",
-                      // backgroundColor: "red",
-                    }}
-                  >
-                    People
-                  </div>
-                  <div
-                    style={{
-                      width: "900px",
-                      height: "auto",
-                      display: "flex",
-                      flexDirection: "row",
-                      flexWrap: "wrap",
-                      alignItems: "flex-start",
-                      justifyContent: "flex-start",
-                      gap: "16px",
-                      fontSize: "16px",
-                      marginLeft: "10px",
 
-                      // backgroundColor: "pink",
+            {/* Mobile View Starts */}
+            <div className="mob-channelData-row">
+              <div className="header">
+                <div className="part-1">
+                  <img
+                    src={val?.ChannelImageUrl}
+                    alt=""
+                    style={{
+                      width: "40px",
+                      height: "40px",
+                      borderRadius: "50%",
                     }}
-                  >
+                  />
+                  <div className="column-1">
+                    <span style={{ color: "#aeaeae" }}>Channel Name</span>
+                    <div className="">{val?.ChannelName.slice(0, 20)}</div>
+                  </div>
+                </div>
+                <div className="part-2" onClick={() => handleSubSection(index)}>
+                  {activeIndex === index ? (
+                    <img
+                      style={{
+                        position: "relative",
+                        width: "21.5px",
+                        height: "21.5px",
+                      }}
+                      alt=""
+                      src="/vector-1433.svg"
+                    />
+                  ) : (
+                    <img
+                      style={{
+                        position: "relative",
+                        width: "21.5px",
+                        height: "21.5px",
+                      }}
+                      alt=""
+                      src="/vector-278.svg"
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="body">
+                <div className="column">
+                  <div className="body-icon">
+                    <LuCalendarDays style={{ width: "30px", height: "30px" }} />
+                  </div>
+                  <div className="text">
+                    <span style={{ color: "#AEAEAE" }}>Summaries</span>
+                    <div className="value">{Math.floor(val?.Summaries)}</div>
+                  </div>
+                </div>
+                <div className="column">
+                  <div className="body-icon">
+                    <LuCalendarDays style={{ width: "30px", height: "30px" }} />
+                  </div>
+                  <div className="text">
+                    <span style={{ color: "#AEAEAE" }}>Predictions</span>
+                    <div className="value">{val?.Predictions}</div>
+                  </div>
+                </div>
+                <div className="column">
+                  <div className="body-icon">
+                    <LuCalendarDays style={{ width: "30px", height: "30px" }} />
+                  </div>
+                  <div className="text">
+                    <span style={{ color: "#AEAEAE" }}>
+                      Prediction Accuracy
+                    </span>
+                    <div className="value">{val?.PredictionAccuracy}</div>
+                  </div>
+                </div>
+                {/* <div className="column">
+                  <div className="body-icon">
+                    <LuCalendarDays style={{ width: "30px", height: "30px" }} />
+                  </div>
+                  <div className="text">
+                    <span style={{ color: "#AEAEAE" }}>Points</span>
+                    <div className="value">
+                      {Math.floor(val?.total_user_score)}
+                    </div>
+                  </div>
+                </div> */}
+              </div>
+            </div>
+            {/* Hidden Data Starts */}
+            {index === activeIndex ? (
+              <div className="channelData-active">
+                <div className="section-1">
+                  <div className="column-1">People</div>
+                  <div className="column-2">
                     {val?.People.map((val, index) => {
                       return (
                         <>
                           <div
                             style={{
                               borderRadius: "10px",
-                              border: "1px solid #baff2a",
+                              border: "1px solid white",
                               boxSizing: "border-box",
-                              width: "247px",
-                              height: "68px",
                               display: "flex",
                               flexDirection: "row",
                               alignItems: "center",
                               justifyContent: "flex-start",
-                              padding: "10px",
-                              gap: "17px",
+                              padding: "6px 12px",
+                              gap: "12px",
                               flexWrap: "wrap",
                             }}
                             onClick={() =>
@@ -552,8 +227,8 @@ function MyChannels() {
                               style={{
                                 position: "relative",
                                 borderRadius: "50%",
-                                width: "48px",
-                                height: "48px",
+                                width: "42px",
+                                height: "42px",
                                 objectFit: "cover",
                               }}
                               alt=""
@@ -564,8 +239,6 @@ function MyChannels() {
                                 position: "relative",
                                 display: "flex",
                                 alignItems: "center",
-                                width: "160px",
-                                height: "28px",
                                 flexShrink: "0",
                               }}
                             >
@@ -575,188 +248,21 @@ function MyChannels() {
                         </>
                       );
                     })}
-
-                    <div
-                      style={{
-                        borderRadius: "10px",
-                        width: "290px",
-                        height: "68px",
-                      }}
-                    />
                   </div>
                 </div>
-                <div
-                  style={{
-                    width: "880px",
-                    height: "56px",
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "flex-start",
-                    gap: "16px",
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "relative",
-                      fontWeight: "600",
-                      display: "flex",
-                      alignItems: "center",
-                      width: "290px",
-                      height: "28px",
-                      flexShrink: "0",
-                    }}
-                  >
-                    Topics
-                  </div>
-                  <div
-                    style={{
-                      position: "relative",
-                      fontSize: "20px",
-                      color: "#aeaeae",
-                      display: "flex",
-                      alignItems: "center",
-                      width: "305px",
-                      height: "28px",
-                      flexShrink: "0",
-                    }}
-                  >
+                <div className="section-1">
+                  <div className="column-1">Topics</div>
+                  <div className="column-2">
                     {val?.Topics?.toString().split(",").join(", ")}
                   </div>
                 </div>
-                <div
-                  style={{
-                    width: "1215px",
-                    height: "72px",
-                    overflow: "hidden",
-                    flexShrink: "0",
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "flex-start",
-                    gap: "16px",
-                  }}
-                >
-                  <div
-                    style={{
-                      borderRadius: "10px",
-                      width: "290px",
-                      height: "50px",
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                      justifyContent: "flex-start",
-                    }}
-                  >
-                    <div
-                      style={{
-                        position: "relative",
-                        fontWeight: "600",
-                        display: "flex",
-                        alignItems: "center",
-                        width: "235px",
-                        height: "28px",
-                        flexShrink: "0",
-                      }}
-                    >
-                      Pending Predictions
-                    </div>
-                  </div>
-                  <div
-                    style={{
-                      borderRadius: "10px",
-                      width: "242px",
-                      height: "50px",
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                      justifyContent: "flex-start",
-                      color: "#fff",
-                    }}
-                  >
-                    <div
-                      style={{
-                        position: "relative",
-                        fontWeight: "4          00",
-                        display: "flex",
-                        alignItems: "center",
-                        width: "235px",
-                        height: "28px",
-                        flexShrink: "0",
-                      }}
-                    >
-                      {val?.TotalPendingPredictions}
-                    </div>
-                  </div>
+                <div className="section-1">
+                  <div className="column-1">Pending Predictions</div>
+                  <div className="column-2">{val?.TotalPendingPredictions}</div>
                 </div>
-                <div
-                  style={{
-                    width: "1215px",
-                    height: "72px",
-                    overflow: "hidden",
-                    flexShrink: "0",
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "flex-start",
-                    gap: "16px",
-                  }}
-                >
-                  <div
-                    style={{
-                      borderRadius: "10px",
-                      width: "290px",
-                      height: "50px",
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                      justifyContent: "flex-start",
-                    }}
-                  >
-                    <div
-                      style={{
-                        position: "relative",
-                        fontWeight: "600",
-                        display: "flex",
-                        alignItems: "center",
-                        width: "160px",
-                        height: "28px",
-                        flexShrink: "0",
-                      }}
-                    >
-                      Platforms
-                    </div>
-                  </div>
-                  <div
-                    style={{
-                      borderRadius: "10px",
-                      width: "720px",
-                      height: "50px",
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                      justifyContent: "flex-start",
-                      gap: "25px",
-                    }}
-                  >
-                    {/* <img
-                      style={{
-                        position: "relative",
-                        width: "32px",
-                        height: "32px",
-                      }}
-                      alt=""
-                      src="/spottifywhite.svg"
-                    />
-                    <img
-                      style={{
-                        position: "relative",
-                        width: "36px",
-                        height: "36px",
-                      }}
-                      alt=""
-                      src="/applewhite.svg"
-                    /> */}
+                <div className="section-1">
+                  <div className="column-1">Platforms</div>
+                  <div className="column-2">
                     <img
                       style={{
                         position: "relative",
@@ -766,36 +272,27 @@ function MyChannels() {
                       alt=""
                       src="/youtube.svg"
                     />
-                    {/* <img
+                    <Button
                       style={{
-                        position: "relative",
-                        width: "25.07px",
-                        height: "23.5px",
+                        borderRadius: "10px",
+                        backgroundColor: "#2d2d2d",
+                        border: "1px solid #e72e2e",
+                        boxSizing: "border-box",
+                        width: "172px",
+                        height: "50px",
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: "1px",
+                        fontSize: "16px",
+                        color: "#e72e2e",
                       }}
-                      alt=""
-                      src="/xwhite.svg"
-                    /> */}
+                      onClick={() => alert("In Process....")}
+                    >
+                      Remove Channel
+                    </Button>
                   </div>
-                  <Button
-                    style={{
-                      borderRadius: "10px",
-                      backgroundColor: "#2d2d2d",
-                      border: "1px solid #e72e2e",
-                      boxSizing: "border-box",
-                      width: "172px",
-                      height: "50px",
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      padding: "1px",
-                      fontSize: "16px",
-                      color: "#e72e2e",
-                    }}
-                    onClick={() => alert("In Process....")}
-                  >
-                    Remove Channel
-                  </Button>
                 </div>
               </div>
             ) : null}
@@ -804,6 +301,10 @@ function MyChannels() {
         );
       })}
       {/* Row Data Ends */}
+      <AddChannelModal
+        setShowModal={setOpenAddChannel}
+        showModal={openAddChannel}
+      />
     </div>
   );
 }
